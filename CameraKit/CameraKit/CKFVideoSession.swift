@@ -34,6 +34,15 @@ extension CKFSession.FlashMode {
         }
     }
     
+    @objc public var cameraOrientation:AVCaptureVideoOrientation = .portrait {
+        willSet {
+            self.cameraOrientation = newValue
+        }
+        didSet {
+            self.cameraOrientation = oldValue
+        }
+    }
+    
     var captureDeviceInput: AVCaptureDeviceInput? {
         didSet {
             if let oldValue = oldValue {
@@ -121,7 +130,7 @@ extension CKFSession.FlashMode {
         }()
         
         if let connection = self.movieOutput.connection(with: .video) {
-            connection.videoOrientation = UIDevice.current.orientation.videoOrientation
+            connection.videoOrientation = self.cameraOrientation
         }
         
         self.movieOutput.startRecording(to: fileUrl, recordingDelegate: self)
