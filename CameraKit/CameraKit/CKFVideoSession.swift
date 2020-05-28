@@ -38,9 +38,6 @@ extension CKFSession.FlashMode {
         willSet {
             self.cameraOrientation = newValue
         }
-        didSet {
-            self.cameraOrientation = oldValue
-        }
     }
     
     var captureDeviceInput: AVCaptureDeviceInput? {
